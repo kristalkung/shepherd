@@ -1,20 +1,36 @@
 const Router = ReactRouterDOM.BrowserRouter;
 const Route = ReactRouterDOM.Route;
 const Link = ReactRouterDOM.Link;
+const useHistory = ReactRouterDOM.useHistory;
+const Switch = ReactRouterDOM.Switch;
+
 
 function App() {
+
+  
+
   return (
     <div id='root'>
-      welcome to homepage!
-
-      <div>
-        <div id='option-one'>
-          place button here for option 1
+      <Router>
+        <div>
+          <ul>
+            <li>
+              <Link to='/'> Homepage </Link>
+            </li>
+            <li>
+              <Link to='/option-one'> Option 1 </Link>
+            </li>
+            <li>
+              <Link to='/option-two'> Option 2 </Link>
+            </li>
+          </ul>
         </div>
-        <div id='option-two'>
-        place button here for option 2
-        </div>
-      </div>
+        <Switch>
+          {/* <Route path='/option-one'> <OptionOne/> </Route>
+          <Route path='/option-two'> <OptionTwo/> </Route> */}
+          <Route path='/'> <Homepage/> </Route>
+        </Switch>
+      </Router>
     </div>
   )
 }
