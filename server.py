@@ -2,7 +2,7 @@
 
 from flask import (Flask, render_template, request, flash, session, redirect)
 from model import connect_to_db
-# from crud import get_user_by_email
+
 import crud
 import model
 
