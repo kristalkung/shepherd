@@ -1,9 +1,9 @@
 "use strict";
 
-function OptionTwo() {
+function OptionFlexible() {
   return (
     <div>
-      option two
+      <h2>Flexible Coverage Application</h2>
     </div>
   )
 }
