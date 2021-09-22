@@ -2,21 +2,51 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-class User(db.Model):
-    """A broker user."""
+class Company(db.Model):
+    """A company user."""
 
     __tablename__ = "users"
 
-    user_id = db.Column(db.Integer,
+    company_id = db.Column(db.Integer,
                         autoincrement=True,
                         primary_key=True)
-    email = db.Column(db.String, unique=True)
-    password = db.Column(db.String)
+    company_name = db.Column(db.String, unique=True)
+    contact_email = db.Column(db.String, unique=True)
 
     def __repr__(self):
-        return f"<User user_id={self.user_id} email = {self.email}>"
+        return f"<Company company_id={self.company_id} email = {self.contact_email}>"
     
 
+class FixedOption(db.Model):
+    """Application for fixed options."""
+
+    __tablename__ = "fixed"
+
+    fixed_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    company_name = db.Column(db.String)
+    contact_email = db.Column(db.String)
+    project_name = db.Column(db.String)
+    start_date = db.Column(db.String)
+    end_date = db.Column(db.String)
+    coverage_requested = db.Column(db.String)
+
+    def __repr__(self):
+        return f"<FixedOption fixed_id={self.fixed_id} company_name={self.company_name} coverage={self.coverage_requested}"
+
+class FlexibleOption(db.Model):
+    """Application for flexible options."""
+
+    __tablename__ = "flexible"
+
+    flexible_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    company_name = db.Column(db.String)
+    contact_email = db.Column(db.String)
+    project_name = db.Column(db.String)
+    project_type = db.Column(db.String)
+    coverage_requested = db.Column(db.String)
+
+    def __repr__(self):
+        return f"FlexibleOption flexible_id={self.flexible_id} company_name={self.company_name} coverage={self.coverage_requested}"
 
 def connect_to_db(flask_app, db_uri='postgresql:///brokers', echo=True):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
