@@ -13,11 +13,14 @@ app = Flask(__name__)
 app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
 
+@app.route('/option-one')
+@app.route('/option-two')
 @app.route('/')
 def homepage():
     """View homepage."""
 
     return render_template('root.html')
+
 
 if __name__ == '__main__':
     connect_to_db(app)

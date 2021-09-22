@@ -1,13 +1,13 @@
 const Router = ReactRouterDOM.BrowserRouter;
 const Route = ReactRouterDOM.Route;
 const Link = ReactRouterDOM.Link;
-const useHistory = ReactRouterDOM.useHistory;
+const Prompt = ReactRouterDOM.Prompt;
 const Switch = ReactRouterDOM.Switch;
-
+const Redirect = ReactRouterDOM.Redirect;
+const useHistory = ReactRouterDOM.useHistory;
+const useParams = ReactRouterDOM.useParams;
 
 function App() {
-
-  
 
   return (
     <div id='root'>
@@ -26,8 +26,8 @@ function App() {
           </ul>
         </div>
         <Switch>
-          {/* <Route path='/option-one'> <OptionOne/> </Route>
-          <Route path='/option-two'> <OptionTwo/> </Route> */}
+          <Route path='/option-one'> <OptionOne/> </Route>
+          <Route path='/option-two'> <OptionTwo/> </Route>
           <Route path='/'> <Homepage/> </Route>
         </Switch>
       </Router>
