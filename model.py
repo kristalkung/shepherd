@@ -5,7 +5,7 @@ db = SQLAlchemy()
 class Company(db.Model):
     """A company user."""
 
-    __tablename__ = "users"
+    __tablename__ = "companies"
 
     company_id = db.Column(db.Integer,
                         autoincrement=True,
@@ -47,6 +47,23 @@ class FlexibleOption(db.Model):
 
     def __repr__(self):
         return f"FlexibleOption flexible_id={self.flexible_id} company_name={self.company_name} coverage={self.coverage_requested}"
+
+class Applications(db.Model):
+    """Applications relationship table"""
+
+    __tablename__ = "applications"
+
+    application_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    company_id = db.Column(db.Integer, db.ForeignKey('companies.company_id'))
+    fixed_id = db.Column(db.Integer, db.ForeignKey('fixed.fixed_id'), nullable=True)
+    flexible_id = db.Column(db.Integer, db.ForeignKey('flexible.flexible_id'), nullable=True)
+
+    company = db.relationship('Company', backref='applications')
+    fixed = db.relationship('Fixed', backref='applications')
+    flexible = db.relationship('Flexible', backref='applications')
+
+    def __repr__(self):
+        return f"Application id={self.application_id} company_id={self.company_id} fixed_id={self.fixed_id} flexible_id={self.flexible_id}"
 
 def connect_to_db(flask_app, db_uri='postgresql:///brokers', echo=True):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
