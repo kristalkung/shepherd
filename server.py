@@ -13,25 +13,41 @@ app = Flask(__name__)
 app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
 
-@app.route('/option-fixed')
-@app.route('/option-flexible')
+# @app.route('/option-fixed')
+# @app.route('/option-flexible')
+@app.route('/application')
+@app.route('/api/application')
 @app.route('/')
 def homepage():
     """View homepage."""
 
     return render_template('root.html')
 
-@app.route('/cookie')
-def valid_auth_cookie():
-    """Determines if valid auth cookie exists."""
+@app.route('/application', methods=['POST'])
+def application_type():
+    """Returns the application form based on the option chosen."""
+    
+    option = request.form.get('option')
+    print(option)
 
-    invalid_cookie = 'true'
+    if option == 'fixed':
+        return 'fixed'
+    else:
+        return 'flexible'
 
-    if 'auth' in request.cookies:
-        if request.cookies.get('auth') == 'shepherd':
-            invalid_cookie = 'false'
 
-    return invalid_cookie
+
+# @app.route('/cookie')
+# def valid_auth_cookie():
+#     """Determines if valid auth cookie exists."""
+
+#     invalid_cookie = 'true'
+
+#     if 'auth' in request.cookies:
+#         if request.cookies.get('auth') == 'shepherd':
+#             invalid_cookie = 'false'
+
+#     return invalid_cookie
 
 
 if __name__ == '__main__':

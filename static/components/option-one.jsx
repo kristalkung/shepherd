@@ -6,9 +6,6 @@ function OptionFixed() {
 
   const [companyName, setCompanyName] = React.useState("");
   const [email, setEmail] = React.useState("");
-  const [projectName, setProjectName] = React.useState("");
-  const [startDate, setStartDate] = React.useState("");
-  const [endDate, setEndDate] = React.useState("");
   const [coverage, setCoverage] = React.useState("");
   const [submitButton, setSubmitButton] = React.useState(false);
 
@@ -60,18 +57,6 @@ function OptionFixed() {
         <div>
           <label>Contact Email: </label>
           <input type='text' value={email} name='email' onChange={(e)=>setEmail(e.target.value)} autoComplete='off' required></input>
-        </div>
-        <div>
-          <label>Project Name: </label>
-          <input type='text' value={projectName} name='company-name' onChange={(e)=>setProjectName(e.target.value)} autoComplete='off' required></input>
-        </div>
-        <div>
-          <label>Project Start Date: </label>
-          <input type='text' value={startDate} name='company-name' onChange={(e)=>setStartDate(e.target.value)} autoComplete='off' required></input>
-        </div>
-        <div>
-          <label>Expected End Date: </label>
-          <input type='text' value={endDate} name='company-name' onChange={(e)=>setEndDate(e.target.value)} autoComplete='off' required></input>
         </div>
         <div>
           <label>Coverage Requested: </label>
