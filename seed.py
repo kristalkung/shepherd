@@ -12,5 +12,7 @@ import server
 os.system('dropdb brokers')
 os.system('createdb brokers')
 
+
+
 model.connect_to_db(server.app)
 model.db.create_all()
