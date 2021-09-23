@@ -32,6 +32,7 @@ function App() {
           <Switch>
             <Route path='/option-fixed'> <OptionFixed/> </Route>
             <Route path='/option-flexible'> <OptionFlexible/> </Route>
+            <Route path='/application'> <Application/> </Route>
             <Route path='/'> <Homepage/> </Route>
           </Switch>
         </Router>
