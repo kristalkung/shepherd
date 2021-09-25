@@ -8,9 +8,9 @@ application_options = [
   },
   { 'type': 'flexible',
     'fields': {
-      "companyName": 'Company Name',
-      "contactEmail": 'Contact Email',
-      "projectType": 'Project Type',
+      "company_name": 'Company Name',
+      "contact_email": 'Contact Email',
+      "coverage_requested": 'Project Type',
     }
   }
 ]
