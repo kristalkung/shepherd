@@ -35,6 +35,9 @@ def application_type(option_type):
     
     return jsonify(fields)
 
+@app.route('/submission', methods=['POST'])
+def validate_submission():
+    return 'hi'
 
 
 
