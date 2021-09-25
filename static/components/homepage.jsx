@@ -5,21 +5,19 @@
 
 function Homepage() {
   
-  
-
   return (
     <div> 
       <h2>Hi Broker, welcome to homepage!</h2>
-      <form action='/application' method='POST'>
+      <div>
         <div id='option-fixed'>
           Fixed Coverage Application: 
-          <button type='submit' value='fixed' name='option' >Fixed</button>
+          <Link to='/application/fixed' type='submit' value='fixed' name='option' >Fixed</Link>
         </div>
         <div id='option-flexible'>
           Flexible Coverage Application: 
-          <button type='submit' value='flexible' name='option' >Flexible</button>
+          <Link to='/application/flexible' type='submit' value='flexible' name='option'>Flexible</Link>
         </div>
-      </form>
+      </div>
     </div>
   )
 }

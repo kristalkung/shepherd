@@ -14,6 +14,8 @@ app = Flask(__name__)
 app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
 
+@app.route('/application/fixed')
+@app.route('/application/flexible')
 @app.route('/application')
 @app.route('/')
 def homepage():
@@ -21,17 +23,16 @@ def homepage():
 
     return render_template('root.html')
 
-@app.route('/application', methods=['POST'])
-def application_type():
+@app.route('/api/application/<option_type>/', methods=['GET'])
+def application_type(option_type):
     """Returns the application form based on the option chosen."""
-    
-    option = request.form.get('option')
+
+    fields = None
 
     for application_option in applications.application_options:
-        if application_option['type'] == option:
+        if application_option['type'] == option_type:
             fields = application_option['fields']
-    # print(fields)
-
+    
     return jsonify(fields)
 
 

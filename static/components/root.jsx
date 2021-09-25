@@ -22,7 +22,8 @@ function App() {
             </ul>
           </div>
           <Switch>
-            <Route path='/application'> <Application/> </Route>
+            <Route path='/application/fixed'> <Application/> </Route>
+            <Route path='/application/flexible'> <Application/> </Route>
             <Route path='/'> <Homepage/> </Route>
           </Switch>
         </Router>

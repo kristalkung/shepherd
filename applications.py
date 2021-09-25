@@ -10,7 +10,7 @@ application_options = [
     'fields': {
       "company_name": 'Company Name',
       "contact_email": 'Contact Email',
-      "coverage_requested": 'Project Type',
+      "project_type": 'Project Type',
     }
   }
 ]
