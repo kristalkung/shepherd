@@ -21,12 +21,18 @@ def homepage():
 
     return render_template('root.html')
 
-@app.route('/api/application', methods=['POST'])
+@app.route('/application', methods=['POST'])
 def application_type():
     """Returns the application form based on the option chosen."""
     
     option = request.form.get('option')
-    
+
+    for application_option in applications.application_options:
+        if application_option['type'] == option:
+            fields = application_option['fields']
+    # print(fields)
+
+    return jsonify(fields)
 
 
 
