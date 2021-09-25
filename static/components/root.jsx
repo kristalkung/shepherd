@@ -18,20 +18,10 @@ function App() {
         <Router>
           <div>
             <ul>
-              <li>
                 <Link to='/'> Homepage </Link>
-              </li>
-              <li>
-                <Link to='/option-fixed'> Fixed Coverage </Link>
-              </li>
-              <li>
-                <Link to='/option-flexible'> Flexible Coverage </Link>
-              </li>
             </ul>
           </div>
           <Switch>
-            <Route path='/option-fixed'> <OptionFixed/> </Route>
-            <Route path='/option-flexible'> <OptionFlexible/> </Route>
             <Route path='/application'> <Application/> </Route>
             <Route path='/'> <Homepage/> </Route>
           </Switch>

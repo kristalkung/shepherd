@@ -13,8 +13,6 @@ app = Flask(__name__)
 app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
 
-# @app.route('/option-fixed')
-# @app.route('/option-flexible')
 @app.route('/application')
 @app.route('/api/application')
 @app.route('/')
