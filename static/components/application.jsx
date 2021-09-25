@@ -7,6 +7,7 @@ function Application() {
   const [coverage, setCoverage] = React.useState("");
   const [projectType, setProjectType] = React.useState("");
   const [fields, setFields] = React.useState(null);
+  const [disableSubmit, setDisableSubmit] = React.useState(true);
 
   const option_type = location.pathname.slice(13);
 
@@ -45,10 +46,10 @@ function Application() {
         {fields.project_type && 
         <div>
           {fields.project_type}:
-          <input type='text' value={projectType} name='project' onChange={(e)=>setProjectType(e.target.value)} autoComplete='off' required/> 
+          <input type='text' value={projectType} name='project-type' onChange={(e)=>setProjectType(e.target.value)} autoComplete='off' required/> 
         </div>
         }
-        <button type='submit'>Submit</button>
+        <button type='submit' >Submit</button>
       </form>
     )
   }

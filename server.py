@@ -37,6 +37,18 @@ def application_type(option_type):
 
 @app.route('/submission', methods=['POST'])
 def validate_submission():
+
+    company_name = request.form.get('company-name')
+    contact_email = request.form.get('email')
+    coverage_requested = request.form.get('coverage')
+    project_type = request.form.get('project-type')
+
+    print(company_name)
+    print(contact_email)
+    print(coverage_requested)
+    print(project_type)
+
+
     return 'hi'
 
 
