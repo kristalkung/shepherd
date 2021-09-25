@@ -5,6 +5,7 @@ from model import connect_to_db
 
 import crud
 import model
+import applications
 
 from jinja2 import StrictUndefined
 
@@ -14,24 +15,20 @@ app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
 
 @app.route('/application')
-@app.route('/api/application')
 @app.route('/')
 def homepage():
     """View homepage."""
 
     return render_template('root.html')
 
-@app.route('/application', methods=['POST'])
+@app.route('/api/application', methods=['POST'])
 def application_type():
     """Returns the application form based on the option chosen."""
     
     option = request.form.get('option')
-    print(option)
+    
 
-    if option == 'fixed':
-        return 'fixed'
-    else:
-        return 'flexible'
+
 
 
 
