@@ -9,7 +9,7 @@ function Application() {
   const [fields, setFields] = React.useState(null);
   const [disableSubmit, setDisableSubmit] = React.useState(true);
 
-  const option_type = location.pathname.slice(13);
+  const option_type = location.pathname.slice('/application/'.length);
 
   React.useEffect(() => {
     const options = {
@@ -46,7 +46,11 @@ function Application() {
         {fields.project_type && 
         <div>
           {fields.project_type}:
-          <input type='text' value={projectType} name='project-type' onChange={(e)=>setProjectType(e.target.value)} autoComplete='off' required/> 
+          <select type='text' value={projectType} name='project-type' onChange={(e)=>setProjectType(e.target.value)} autoComplete='off' required>
+            <option value='residential'>Residential</option>
+            <option value='commercial'>Commercial</option>
+            <option value='public'>Public</option>
+          </select> 
         </div>
         }
         <button type='submit' >Submit</button>

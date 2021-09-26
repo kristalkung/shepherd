@@ -2,6 +2,7 @@
 
 from flask import (Flask, render_template, request, flash, session, redirect, jsonify)
 from model import connect_to_db
+from validate_email import validate_email
 
 import crud
 import model
@@ -43,13 +44,26 @@ def validate_submission():
     coverage_requested = request.form.get('coverage')
     project_type = request.form.get('project-type')
 
-    print(company_name)
-    print(contact_email)
-    print(coverage_requested)
-    print(project_type)
+    is_valid_email = validate_email(email_address=contact_email,
+                                    check_format=True,
+                                    check_blacklist=True,
+                                    check_dns=True,
+                                    dns_timeout=10,
+                                    check_smtp=True,
+                                    smtp_timeout=10,
+                                    smtp_helo_host='my.host.name',
+                                    smtp_from_address='my@from.addr.ess',
+                                    smtp_skip_tls=False,
+                                    smtp_tls_context=None,
+                                    smtp_debug=False) 
 
+    if is_valid_email == False:
+        return 'invalid email'
+    elif coverage_requested != None:
+        if coverage_requested.isdigit() == False:
+            return 'invalid coverage'
 
-    return 'hi'
+    return 'valid'
 
 
 
