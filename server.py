@@ -63,6 +63,15 @@ def validate_submission():
         if coverage_requested.isdigit() == False:
             return 'invalid coverage'
 
+    if coverage_requested == None:
+        flexible_app = crud.create_flexible_option(company_name, contact_email, project_type)
+        new_app = crud.create_flexible_application(flexible_app)
+    else:
+        fixed_app = crud.create_fixed_option(company_name, contact_email, coverage_requested)
+        new_app = crud.create_fixed_application(fixed_app)
+
+    
+
     return 'valid'
 
 
@@ -79,6 +88,7 @@ def validate_submission():
 #             invalid_cookie = 'false'
 
 #     return invalid_cookie
+
 
 
 if __name__ == '__main__':

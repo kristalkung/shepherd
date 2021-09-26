@@ -35,7 +35,7 @@ def create_fixed_application(fixed):
 
     return fixed_application
 
-def create_flexible_application(fixed):
+def create_flexible_application(flexible):
     """Create and return a flexible application"""
 
     flexible_application = Application(flexible=flexible)
