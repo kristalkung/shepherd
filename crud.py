@@ -28,7 +28,7 @@ def create_flexible_option(company_name, contact_email, project_type):
 def create_fixed_application(fixed):
     """Create and return a fixed application"""
 
-    fixed_application = Application(fixed=fixed)
+    fixed_application = Applications(fixed=fixed)
 
     db.session.add(fixed_application)
     db.session.commit()
@@ -38,12 +38,14 @@ def create_fixed_application(fixed):
 def create_flexible_application(flexible):
     """Create and return a flexible application"""
 
-    flexible_application = Application(flexible=flexible)
+    flexible_application = Applications(flexible=flexible)
 
     db.session.add(flexible_application)
     db.session.commit()
 
     return flexible_application
+
+
 
 if __name__ == '__main__':
     from server import app

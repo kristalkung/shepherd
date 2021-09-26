@@ -70,7 +70,7 @@ def validate_submission():
         fixed_app = crud.create_fixed_option(company_name, contact_email, coverage_requested)
         new_app = crud.create_fixed_application(fixed_app)
 
-    
+    print(f'new_app is: {new_app}')
 
     return 'valid'
 
