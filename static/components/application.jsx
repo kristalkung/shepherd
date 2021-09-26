@@ -20,6 +20,15 @@ function Application() {
     .then(response => response.json())
     .then(data => setFields(data))
   }, [option_type])
+
+  React.useEffect(() => {
+
+    fetch(`/cookie`)
+    .then(response => response.json())
+    .then(data => setDisableSubmit(data))
+
+  }, [disableSubmit])
+
     
   if (fields === null) {
     return <div>fields is null</div>
@@ -53,7 +62,7 @@ function Application() {
           </select> 
         </div>
         }
-        <button type='submit' >Submit</button>
+        <button type='submit' disabled={disableSubmit}>Submit</button>
       </form>
     )
   }

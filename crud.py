@@ -45,6 +45,15 @@ def create_flexible_application(flexible):
 
     return flexible_application
 
+def get_fixed_option_by_id(fixed_id):
+    """Returns fixed option object by fixed_id."""
+
+    return FixedOptions.query.get(fixed_id)
+
+def get_flexible_option_by_id(flexible_id):
+    """Returns flexible option object by flexible_id."""
+
+    return FlexibleOption.query.get(flexible_id)
 
 
 if __name__ == '__main__':

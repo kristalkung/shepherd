@@ -3,6 +3,7 @@
 from flask import (Flask, render_template, request, flash, session, redirect, jsonify)
 from model import connect_to_db
 from validate_email import validate_email
+from fpdf import FPDF
 
 import crud
 import model
@@ -63,31 +64,47 @@ def validate_submission():
         if coverage_requested.isdigit() == False:
             return 'invalid coverage'
 
+    # pdf = FPDF()
+    # pdf.add_page()
+    # pdf.set_font("Arial", size = 15)
+
     if coverage_requested == None:
         flexible_app = crud.create_flexible_option(company_name, contact_email, project_type)
         new_app = crud.create_flexible_application(flexible_app)
+
+        form_fields = {'Company Name': company_name,
+                       'Contact Email': contact_email,
+                       'Project Type': project_type}
+
+        # for key in form_fields.keys():
+            # pdf.cell()
+
     else:
         fixed_app = crud.create_fixed_option(company_name, contact_email, coverage_requested)
         new_app = crud.create_fixed_application(fixed_app)
 
-    print(f'new_app is: {new_app}')
+        form_fields = {'Company Name': company_name,
+                       'Contact Email': contact_email,
+                       'Coverage Requested': coverage_requested}
+
+    
 
     return 'valid'
 
 
 
 
-# @app.route('/cookie')
-# def valid_auth_cookie():
-#     """Determines if valid auth cookie exists."""
+@app.route('/cookie')
+def valid_auth_cookie():
+    """Determines if valid auth cookie exists."""
 
-#     invalid_cookie = 'true'
+    invalid_cookie = True
 
-#     if 'auth' in request.cookies:
-#         if request.cookies.get('auth') == 'shepherd':
-#             invalid_cookie = 'false'
+    if 'auth' in request.cookies:
+        if request.cookies.get('auth') == 'shepherd':
+            invalid_cookie = False
 
-#     return invalid_cookie
+    return jsonify(invalid_cookie)
 
 
 
