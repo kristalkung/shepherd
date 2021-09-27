@@ -1,22 +1,27 @@
 "use strict";
 
+// single component for displaying application form for both fixed and flexible options
 function Application() {
 
   let history = useHistory();
 
+  // states for input user for each field
   const [companyName, setCompanyName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [coverage, setCoverage] = React.useState("");
   const [projectType, setProjectType] = React.useState("Residential");
+
+  // to hold what fields to eventually display inputs for on the form
   const [fields, setFields] = React.useState(null);
+
+  // for determining if the submit button should be disabled or not
   const [disableSubmit, setDisableSubmit] = React.useState(true);
 
+  // option_type will be either 'fixed' or 'flexible'
   const option_type = location.pathname.slice('/application/'.length);
 
-  const handleSelect = (option) => {
-    setProjectType(option)
-  }
-
+  // useEffect & fetch will grab the option type and determine from server
+  // & update setFields (which fields to display in the submission form)
   React.useEffect(() => {
     const options = {
       method: 'GET'
@@ -27,6 +32,8 @@ function Application() {
     .then(data => setFields(data))
   }, [option_type])
 
+  // useEffect & fetch will call server path '/cookie'
+  // will determine if disableSubmit should be true or false
   React.useEffect(() => {
 
     fetch(`/cookie`)
@@ -35,9 +42,11 @@ function Application() {
 
   }, [disableSubmit])
 
+  // to handle form submission after clicking button
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // data is sent to server
     const data = {
       option_type,
       companyName,
@@ -53,6 +62,8 @@ function Application() {
       },
       body: JSON.stringify(data)
     }
+
+    // for determining if inputs are valid inputs
     fetch('/submission', options)
     .then(response => response.json())
     .then(data => {
@@ -67,7 +78,8 @@ function Application() {
     })
 
   }
-    
+
+  // will display form based off of which fields there are
   if (fields === null) {
     return <div>fields is null</div>
   } else {
@@ -95,7 +107,7 @@ function Application() {
           {fields.project_type && 
           <div className='form-group text'>
             <label htmlFor="projecttype"> {fields.project_type}</label>
-            <select className='form-control text' value={projectType} name='project-type' onChange={(e)=>handleSelect(e.target.value)} autoComplete='off' required>
+            <select className='form-control text' value={projectType} name='project-type' onChange={(e)=>setProjectType(e.target.value)} autoComplete='off' required>
               <option value='Residential'>Residential</option>
               <option value='Commercial'>Commercial</option>
               <option value='Public'>Public</option>
