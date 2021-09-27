@@ -72,36 +72,43 @@ function Application() {
     return <div>fields is null</div>
   } else {
     return (
-      <form action='/submission' method='POST'>
-        <h3>Application for {option_type} option</h3>
-        <div>
-          {fields.company_name}:
-          <input type='text' value={companyName} name='company-name' onChange={(e)=>setCompanyName(e.target.value)} autoComplete='off' required/> 
-        </div>
-        <div>
-          {fields.contact_email}: 
-          <input type='text' value={email} name='email' onChange={(e)=>setEmail(e.target.value)} autoComplete='off' required/>
-        </div>        
+      <div className='app-form'>
+        <form action='/submission' method='POST' >
+          <h3 className='text-header'>Application for {option_type} option</h3>
+          <div className='form-group text'>
+            <label htmlFor="companyname" > {fields.company_name} </label>
+            <input className='form-control' type='text' value={companyName} name='company-name' onChange={(e)=>setCompanyName(e.target.value)} autoComplete='off' required/> 
+          </div>
+          <div className='form-group text'>
+            
+            <label htmlFor="email" > {fields.contact_email}  </label>
+            <input className='form-control' type='text' value={email} name='email' onChange={(e)=>setEmail(e.target.value)} autoComplete='off' required/>
+          </div>        
 
-        {fields.coverage_requested && 
-        <div>
-          {fields.coverage_requested}:
-          <input type='text' value={coverage} name='coverage' onChange={(e)=>setCoverage(e.target.value)} autoComplete='off' required/> 
-        </div>
-        }
+          {fields.coverage_requested && 
+          <div className='form-group text'>
+            <label htmlFor="coverage" > {fields.coverage_requested}</label>
+            <input className='form-control' type='text' value={coverage} name='coverage' onChange={(e)=>setCoverage(e.target.value)} autoComplete='off' required/> 
+          </div>
+          }
 
-        {fields.project_type && 
-        <div>
-          {fields.project_type}:
-          <select type='text' value={projectType} name='project-type' onChange={(e)=>handleSelect(e.target.value)} autoComplete='off' required>
-            <option value='Residential'>Residential</option>
-            <option value='Commercial'>Commercial</option>
-            <option value='Public'>Public</option>
-          </select> 
-        </div>
-        }
-        <button type='submit' disabled={disableSubmit} onClick={handleSubmit}>Submit</button>
-      </form>
+          {fields.project_type && 
+          <div className='form-group text'>
+            <label htmlFor="projecttype"> {fields.project_type}</label>
+            <select className='form-control text' value={projectType} name='project-type' onChange={(e)=>handleSelect(e.target.value)} autoComplete='off' required>
+              <option value='Residential'>Residential</option>
+              <option value='Commercial'>Commercial</option>
+              <option value='Public'>Public</option>
+            </select> 
+          </div>
+          }
+          <div className='submit-button'>
+            <button className='btn btn-warning' type='submit' disabled={disableSubmit} onClick={handleSubmit}>Submit</button>
+          </div>
+          
+        </form>
+      </div>
+      
     )
   }
   }

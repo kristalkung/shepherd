@@ -1,0 +1,60 @@
+body {
+  background-color: black;
+}
+
+.homepage-link {
+  color: lightgray;
+}
+.homepage-link:hover {
+  color: gray;
+}
+
+.app-link {
+  border-radius: 10px;
+  background-color: #FFF300;
+  color: black;
+  margin: 5px;
+  padding: 3px;
+}
+
+.app-link:hover {
+  border-radius: 10px;
+  background-color: #FFF534;
+  color: black;
+  margin-top: 2px;
+  text-decoration: none;
+}
+
+.text {
+  color: lightgray;
+  font-size: 20px;
+}
+
+.text-header {
+  color: white;
+  text-align: center;
+}
+
+.app-options {
+  padding-top: 20px;
+  text-align: center;
+}
+
+.app-form {
+  border: 5px white;
+  background-color: #1D1C06;
+  border-radius: 10px;
+  text-align: left;
+  margin: auto;
+  margin-top: 10px;
+  width: 500px;
+  padding: 1rem;
+}
+
+.input-box {
+  border-radius: 5px;
+}
+
+.submit-button {
+  text-align: center;
+}

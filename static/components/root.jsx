@@ -16,11 +16,9 @@ function App() {
     <CookiesProvider>
       <div id='root'>
         <Router>
-          <div>
-            <ul>
-                <Link to='/'> Homepage </Link>
-            </ul>
-          </div>
+          <nav id='navbar' className='navbar'>
+            <a href='/'><img src="/static/img/shepherd-img.png" width="180" height="70" className="d-inline-block align-center" alt="" /> </a>
+          </nav>
           <Switch>
             <Route path='/application/fixed'> <Application/> </Route>
             <Route path='/application/flexible'> <Application/> </Route>
