@@ -4,6 +4,7 @@ from flask import (Flask, render_template, request, flash, session, redirect, js
 from model import connect_to_db
 from validate_email import validate_email
 from fpdf import FPDF
+import webbrowser
 
 import crud
 import model
@@ -16,6 +17,7 @@ app = Flask(__name__)
 app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
 
+@app.route('/form/<data>')
 @app.route('/application/fixed')
 @app.route('/application/flexible')
 @app.route('/application')
@@ -119,6 +121,17 @@ def valid_auth_cookie():
 
     return jsonify(invalid_cookie)
 
+@app.route('/form/<data>', methods=['GET'])
+def show_pdf(data):
+    """Displays PDF in browser after successful submission"""
+
+    
+
+    path = f'{data}'
+
+    webbrowser.open_new(path)
+
+    return path
 
 
 if __name__ == '__main__':

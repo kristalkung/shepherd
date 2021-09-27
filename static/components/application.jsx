@@ -51,12 +51,14 @@ function Application() {
     }
     fetch('/submission', options)
     .then(response => response.json())
-    .then(data => { console.log(data)
+    .then(data => {
       if ((data == 'invalid email') || (data == 'invalid coverage')) {
         alert('Email is invalid or coverage input is invalid. Please enter an existing email and only use numbers for coverage.')
       }
       else {
-        history.push(`/${data}`)
+        return (
+          history.push(`/form/${data}`)
+        )
       }
     })
 
