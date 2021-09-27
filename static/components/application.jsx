@@ -2,6 +2,8 @@
 
 function Application() {
 
+  let history = useHistory();
+
   const [companyName, setCompanyName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [coverage, setCoverage] = React.useState("");
@@ -29,6 +31,36 @@ function Application() {
 
   }, [disableSubmit])
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const data = {
+      option_type,
+      companyName,
+      email,
+      coverage,
+      projectType
+    }
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }
+    fetch('/submission', options)
+    .then(response => response.json())
+    .then(data => { console.log(data)
+      if ((data == 'invalid email') || (data == 'invalid coverage')) {
+        alert('Email is invalid or coverage input is invalid. Please enter an existing email and only use numbers for coverage.')
+      }
+      else {
+        history.push(`/${data}`)
+      }
+    })
+
+  }
     
   if (fields === null) {
     return <div>fields is null</div>
@@ -62,7 +94,7 @@ function Application() {
           </select> 
         </div>
         }
-        <button type='submit' disabled={disableSubmit}>Submit</button>
+        <button type='submit' disabled={disableSubmit} onClick={handleSubmit}>Submit</button>
       </form>
     )
   }

@@ -40,10 +40,11 @@ def application_type(option_type):
 @app.route('/submission', methods=['POST'])
 def validate_submission():
 
-    company_name = request.form.get('company-name')
-    contact_email = request.form.get('email')
-    coverage_requested = request.form.get('coverage')
-    project_type = request.form.get('project-type')
+    option_type = request.json.get('option_type')
+    company_name = request.json.get('companyName')
+    contact_email = request.json.get('email')
+    coverage_requested = request.json.get('coverage')
+    project_type = request.json.get('projectType')
 
     is_valid_email = validate_email(email_address=contact_email,
                                     check_format=True,
@@ -57,18 +58,19 @@ def validate_submission():
                                     smtp_skip_tls=False,
                                     smtp_tls_context=None,
                                     smtp_debug=False) 
-
+    print(f'*****is_valid_email: {is_valid_email}')
     if is_valid_email == False:
-        return 'invalid email'
-    elif coverage_requested != None:
+        return '"invalid email"'
+    elif option_type == 'fixed':
         if coverage_requested.isdigit() == False:
-            return 'invalid coverage'
+            return '"invalid coverage"'
 
-    # pdf = FPDF()
-    # pdf.add_page()
-    # pdf.set_font("Arial", size = 15)
-
-    if coverage_requested == None:
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font("Arial", size = 20)
+    
+    if option_type == 'flexible':
+        form_option = 'Flexible'
         flexible_app = crud.create_flexible_option(company_name, contact_email, project_type)
         new_app = crud.create_flexible_application(flexible_app)
 
@@ -76,23 +78,34 @@ def validate_submission():
                        'Contact Email': contact_email,
                        'Project Type': project_type}
 
-        # for key in form_fields.keys():
-            # pdf.cell()
-
     else:
+        form_option = 'Fixed'
         fixed_app = crud.create_fixed_option(company_name, contact_email, coverage_requested)
         new_app = crud.create_fixed_application(fixed_app)
-
+        
         form_fields = {'Company Name': company_name,
                        'Contact Email': contact_email,
                        'Coverage Requested': coverage_requested}
 
+    new_app_id = new_app.application_id
+
+    pdf.cell(200, 10, txt=f'Shepherd {form_option} Application Form', ln = 0, align = 'C')
+    pdf.cell(200, 10, txt='', ln = 1, align = 'C')
+    pdf.cell(200, 10, txt='', ln = 2, align = 'C')
+    pdf.set_font("Arial", size = 15)
+    line_no = 3
     
+    for key in form_fields.keys():
+        text = f'{key}: {form_fields[key]}'
+        pdf.cell(200, 10, txt=text, ln = line_no, align = 'L')
+        line_no += 1
+        print(f'pdf txt is this: {text}')
+    
+    pdf.output(f'application{new_app_id}.pdf')
 
-    return 'valid'
+    to_return = f"application{new_app_id}.pdf"
 
-
-
+    return jsonify(to_return)
 
 @app.route('/cookie')
 def valid_auth_cookie():
