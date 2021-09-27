@@ -24,7 +24,7 @@ function App() {
           <Switch>
             <Route path='/application/fixed'> <Application/> </Route>
             <Route path='/application/flexible'> <Application/> </Route>
-            <Route path='/form/:application'> <PDFForm /> </Route>
+            <Route path='/form/:application'> <PdfForm /> </Route>
             <Route path='/'> <Homepage/> </Route>
           </Switch>
         </Router>

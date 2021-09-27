@@ -124,14 +124,10 @@ def valid_auth_cookie():
 @app.route('/form/<data>', methods=['GET'])
 def show_pdf(data):
     """Displays PDF in browser after successful submission"""
+    new = 2
+    url = f'/Users/kristalkung/vagrant/hb-dev/src/shepherd/takehome/{data}.pdf'
+    webbrowser.open(url,new=new)
 
-    
-
-    path = f'{data}'
-
-    webbrowser.open_new(path)
-
-    return path
 
 
 if __name__ == '__main__':
