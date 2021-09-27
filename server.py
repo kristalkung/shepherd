@@ -47,7 +47,7 @@ def validate_submission():
     contact_email = request.json.get('email')
     coverage_requested = request.json.get('coverage')
     project_type = request.json.get('projectType')
-
+    print(f'******project_type: {project_type}')
     is_valid_email = validate_email(email_address=contact_email,
                                     check_format=True,
                                     check_blacklist=True,
@@ -60,7 +60,7 @@ def validate_submission():
                                     smtp_skip_tls=False,
                                     smtp_tls_context=None,
                                     smtp_debug=False) 
-    print(f'*****is_valid_email: {is_valid_email}')
+
     if is_valid_email == False:
         return '"invalid email"'
     elif option_type == 'fixed':

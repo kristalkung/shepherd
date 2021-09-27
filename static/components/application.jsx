@@ -7,11 +7,15 @@ function Application() {
   const [companyName, setCompanyName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [coverage, setCoverage] = React.useState("");
-  const [projectType, setProjectType] = React.useState("");
+  const [projectType, setProjectType] = React.useState("Residential");
   const [fields, setFields] = React.useState(null);
   const [disableSubmit, setDisableSubmit] = React.useState(true);
 
   const option_type = location.pathname.slice('/application/'.length);
+
+  const handleSelect = (option) => {
+    setProjectType(option)
+  }
 
   React.useEffect(() => {
     const options = {
@@ -89,10 +93,10 @@ function Application() {
         {fields.project_type && 
         <div>
           {fields.project_type}:
-          <select type='text' value={projectType} name='project-type' onChange={(e)=>setProjectType(e.target.value)} autoComplete='off' required>
-            <option value='residential'>Residential</option>
-            <option value='commercial'>Commercial</option>
-            <option value='public'>Public</option>
+          <select type='text' value={projectType} name='project-type' onChange={(e)=>handleSelect(e.target.value)} autoComplete='off' required>
+            <option value='Residential'>Residential</option>
+            <option value='Commercial'>Commercial</option>
+            <option value='Public'>Public</option>
           </select> 
         </div>
         }
