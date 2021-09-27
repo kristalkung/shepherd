@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 class FixedOption(db.Model):
-    """Application for fixed options."""
+    """Application for fixed application option."""
 
     __tablename__ = "fixed"
 
@@ -13,10 +13,10 @@ class FixedOption(db.Model):
     coverage_requested = db.Column(db.String)
 
     def __repr__(self):
-        return f"<app2edOption fixed_id={self.fixed_id} company_name={self.company_name} coverage={self.coverage_requested}>"
+        return f"<FixedOption fixed_id={self.fixed_id} company_name={self.company_name} coverage={self.coverage_requested}>"
 
 class FlexibleOption(db.Model):
-    """Application for flexible options."""
+    """Application for flexible application option."""
 
     __tablename__ = "flexible"
 
@@ -29,7 +29,7 @@ class FlexibleOption(db.Model):
         return f"<FlexibleOption flexible_id={self.flexible_id} company_name={self.company_name}>"
 
 class Applications(db.Model):
-    """Applications relationship table"""
+    """Applications relationship table. Foreign keys are fixed_id and flexible_id."""
 
     __tablename__ = "applications"
 
