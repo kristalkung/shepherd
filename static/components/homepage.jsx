@@ -7,7 +7,7 @@ function Homepage() {
   
   return (
     <div className='homepage'> 
-      <h2 className='text-header'>Hi. Click on an application option below</h2>
+      <h2 className='text-header'>Click on an application option below</h2>
       <div className='app-options'>
         <div id='option-fixed'  className='text option-fixed'>
           
