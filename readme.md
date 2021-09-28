@@ -16,7 +16,8 @@ Python, Flask, SQLAlchemy, PostgreSQL, Javascript, React, HTML/CSS, Bootstrap
 - Clone this repository
 - Install the requirements using: ```pip3 install -r requirements.txt```
 - Create a virtual environment
-- Initiate the database with: ```createdb brokers```
+- Initiate the database with: ```dropdb brokers```
+- And: ```createdb brokers```
 - And: ```python3.8 -i model.py```
 - And: ```db.create_all()``` to create the tables. You may quit out of the interpreter after this
 - Load the website using: ```python3.8 server.py```
