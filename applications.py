@@ -3,19 +3,22 @@ application_options = [
         'type': 'Fixed',
         'fields': [
             {
-                'name': 'Company Name',
-                'datatype': 'str',
-                'form input': 'input'
-            },
-            {
-                'name': 'Contact Email',
-                'datatype': 'str',
-                'form input': 'input'
-            },
-            {
-                'name': 'Coverage_requested',
+                'label': 'Company Name',
                 'datatype': 'str',
                 'form input': 'input',
+                'name': 'company_name'
+            },
+            {
+                'label': 'Contact Email',
+                'datatype': 'str',
+                'form input': 'input',
+                'name': 'contact_email'
+            },
+            {
+                'label': 'Coverage Requested',
+                'datatype': 'str',
+                'form input': 'input',
+                'name': 'coverage_requested'
             }
         ]
     },
@@ -23,20 +26,23 @@ application_options = [
         'type': 'Flexible',
         'fields': [
             {
-                'name': 'Company Name',
+                'label': 'Company Name',
                 'datatype': 'str',
-                'form input': 'input'
+                'form input': 'input',
+                'name': 'company_name'
             },
             {
-                'name': 'Contact Email',
+                'label': 'Contact Email',
                 'datatype': 'str',
-                'form input': 'input'
+                'form input': 'input',
+                'name': 'contact_email'
             },
             {
-                'name': 'Project Type',
+                'label': 'Project Type',
                 'datatype': 'str',
                 'form input': 'select',
-                'options': ['Residential', 'Public', 'Commercial']
+                'options': ['Residential', 'Public', 'Commercial'],
+                'name': 'project_type'
             }
         ]
     },

@@ -26,6 +26,18 @@ def homepage():
 
     return render_template('root.html')
 
+@app.route('/buttons')
+def return_application_buttons():
+    """Returns the applcation buttons for the homepage."""
+
+    option_buttons = []
+
+    for application_option in applications.application_options:
+        option_buttons.append(application_option['type'])
+    
+    return jsonify(option_buttons)
+
+
 @app.route('/api/application/<option_type>/', methods=['GET'])
 def application_type(option_type):
     """Returns the application form based on the option chosen."""
@@ -71,23 +83,25 @@ def validate_submission():
         if coverage_requested.isdigit() == False:
             return '"invalid coverage"'
     
-    if option_type == 'flexible':
-        form_option = 'Flexible'
-        flexible_app = crud.create_flexible_option(company_name, contact_email, project_type)
-        new_app = crud.create_flexible_application(flexible_app)
+    new_app = crud.create_application(values)
+    
+    # if option_type == 'flexible':
+    #     form_option = 'Flexible'
+    #     flexible_app = crud.create_flexible_option(company_name, contact_email, project_type)
+    #     new_app = crud.create_flexible_application(flexible_app)
 
-        form_fields = {'Company Name': company_name,
-                       'Contact Email': contact_email,
-                       'Project Type': project_type}
+    #     form_fields = {'Company Name': company_name,
+    #                    'Contact Email': contact_email,
+    #                    'Project Type': project_type}
 
-    else:
-        form_option = 'Fixed'
-        fixed_app = crud.create_fixed_option(company_name, contact_email, coverage_requested)
-        new_app = crud.create_fixed_application(fixed_app)
+    # else:
+    #     form_option = 'Fixed'
+    #     fixed_app = crud.create_fixed_option(company_name, contact_email, coverage_requested)
+    #     new_app = crud.create_fixed_application(fixed_app)
         
-        form_fields = {'Company Name': company_name,
-                       'Contact Email': contact_email,
-                       'Coverage Requested': coverage_requested}
+    #     form_fields = {'Company Name': company_name,
+    #                    'Contact Email': contact_email,
+    #                    'Coverage Requested': coverage_requested}
 
     new_app_id = new_app.application_id
 
