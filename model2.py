@@ -9,30 +9,11 @@ class Applications(db.Model):
     __tablename__ = "applications"
 
     application_id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False)
-    # company_name = db.Column(db.String)
-    # contact_email = db.Column(db.String)
-    # project_type = db.Column(db.String)
-    # coverage_requested = db.Column(db.String)
+    form_values = db.Column(db.Text)
 
 
     def __repr__(self):
-        return f"<Application id={self.application_id} fixed_id={self.fixed_id} flexible_id={self.flexible_id}>"
-
-# for i, option in enumerate(application_options):
-    
-
-
-# # below does not work because option in 'class option(db.model)' doesn't change
-# for i, option in enumerate(application_options):
-#     # option_name = 
-#     class {option}(db.Model):
-#         __tablename__ = option['type'].lower()
-#         id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False)
-        
-#         for field in option['fields']:
-#             field = db.Column(db.String)
-#         def __repr__(self):
-#             return f'<id={self.id}>'
+        return f"<Application id={self.application_id}>"
 
 
 def connect_to_db(flask_app, db_uri='postgresql:///brokers', echo=True):

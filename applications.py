@@ -1,16 +1,43 @@
 application_options = [
-  { 'type': 'fixed',
-    'fields': {
-    "company_name": 'Company Name',
-    "contact_email": 'Contact Email',
-    "coverage_requested": 'Coverage Requested',
-    }
-  },
-  { 'type': 'flexible',
-    'fields': {
-      "company_name": 'Company Name',
-      "contact_email": 'Contact Email',
-      "project_type": 'Project Type',
-    }
-  }
+    {
+        'type': 'Fixed',
+        'fields': [
+            {
+                'name': 'Company Name',
+                'datatype': 'str',
+                'form input': 'input'
+            },
+            {
+                'name': 'Contact Email',
+                'datatype': 'str',
+                'form input': 'input'
+            },
+            {
+                'name': 'Coverage_requested',
+                'datatype': 'str',
+                'form input': 'input',
+            }
+        ]
+    },
+    {
+        'type': 'Flexible',
+        'fields': [
+            {
+                'name': 'Company Name',
+                'datatype': 'str',
+                'form input': 'input'
+            },
+            {
+                'name': 'Contact Email',
+                'datatype': 'str',
+                'form input': 'input'
+            },
+            {
+                'name': 'Project Type',
+                'datatype': 'str',
+                'form input': 'select',
+                'options': ['Residential', 'Public', 'Commercial']
+            }
+        ]
+    },
 ]
