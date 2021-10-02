@@ -28,7 +28,7 @@ db = SQLAlchemy()
 #     def __repr__(self):
 #         return f"<FlexibleOption flexible_id={self.flexible_id} company_name={self.company_name}>"
 
-class Applications(db.Model):
+class Application(db.Model):
     """Applications relationship table. Foreign keys are fixed_id and flexible_id."""
 
     __tablename__ = "applications"
