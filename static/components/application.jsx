@@ -29,7 +29,7 @@ function Application() {
     .then(response => response.json())
     .then(data => {
       setFields(data)
-
+      field_dict['option_type'] = option_type
       data.map((field) => (
         field_dict[field.name] = ''
       ))
@@ -136,7 +136,6 @@ function Application() {
           <h3 className='text-header'>Application for {option_type} Option</h3>
           
           {form}
-
           <div className='submit-button'>
             <button className='btn btn-warning' type='submit' disabled={disableSubmit} onClick={handleSubmit}>Submit</button>
           </div>
