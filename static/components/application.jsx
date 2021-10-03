@@ -57,7 +57,11 @@ function Application() {
 
     // console.log(fieldsState)
 
-    // // data is sent to server
+    // data is sent to server
+    const data = {
+      fieldsState
+    }
+
     // const data = {
     //   option_type,
     //   companyName,
@@ -66,27 +70,27 @@ function Application() {
     //   projectType
     // }
 
-    // const options = {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify(data)
-    // }
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }
 
-    // // for determining if inputs are valid inputs
-    // fetch('/submission', options)
-    // .then(response => response.json())
-    // .then(data => {
-    //   if ((data == 'invalid email') || (data == 'invalid coverage')) {
-    //     alert('Email is invalid or coverage input is invalid. Please enter an existing email and only use numbers for coverage.')
-    //   }
-    //   else {
-    //     return (
-    //       history.push(`/form/${data}`)
-    //     )
-    //   }
-    // })
+    // for determining if inputs are valid inputs
+    fetch('/submission', options)
+    .then(response => response.json())
+    .then(data => {
+      if ((data == 'invalid email') || (data == 'invalid coverage')) {
+        alert('Email is invalid or coverage input is invalid. Please enter an existing email and only use numbers for coverage.')
+      }
+      else {
+        return (
+          history.push(`/form/${data}`)
+        )
+      }
+    })
 
   }
 
