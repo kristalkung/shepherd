@@ -102,8 +102,6 @@ function Application() {
   if (fieldsState === null) {
     return <div>fieldsState is null</div>
   } else {
-
-    
     let form = fields.map((field, index) => {
       if (field['form input'] === 'input') {
         return (

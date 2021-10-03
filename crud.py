@@ -6,8 +6,9 @@ from model import db, Application, connect_to_db
 
 def create_application(values):
     """Create and return an application."""
-
-    new_app = Application(form_values=values)
+    
+    values_json = json.dumps(values)
+    new_app = Application(form_values=values_json)
 
     db.session.add(new_app)
     db.session.commit()
