@@ -34,7 +34,7 @@ function Application() {
         field_dict[field.name] = ''
       ))
       setFieldsState(field_dict)
-      console.log(field_dict)
+      // console.log(field_dict)
     })
   }, [option_type])
 

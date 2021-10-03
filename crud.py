@@ -1,6 +1,7 @@
 """CRUD operations"""
 
-# from model import db, Applications, FixedOption, FlexibleOption, connect_to_db
+import json
+
 
 from model import db, Application, connect_to_db
 

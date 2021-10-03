@@ -59,11 +59,16 @@ def validate_submission():
         - adds form data to db
         - creates pdf of form data and saves to local"""
 
-    option_type = request.json.get('option_type')
-    company_name = request.json.get('companyName')
-    contact_email = request.json.get('email')
-    coverage_requested = request.json.get('coverage')
-    project_type = request.json.get('projectType')
+    form_inputs = request.json.get('fieldsState')
+
+    print(form_inputs)
+    option_type = form_inputs['option_type']
+    # company_name = request.json.get('companyName')
+    contact_email = form_inputs['contact_email']
+
+    if form_inputs.get('coverage_requested'):
+        coverage_requested = form_inputs['coverage_requested']
+    # project_type = request.json.get('projectType')
     
     # from p3-validate-email package
     is_valid_email = validate_email(email_address=contact_email,
@@ -85,25 +90,7 @@ def validate_submission():
         if coverage_requested.isdigit() == False:
             return '"invalid coverage"'
     
-    new_app = crud.create_application(values)
-    
-    # if option_type == 'flexible':
-    #     form_option = 'Flexible'
-    #     flexible_app = crud.create_flexible_option(company_name, contact_email, project_type)
-    #     new_app = crud.create_flexible_application(flexible_app)
-
-    #     form_fields = {'Company Name': company_name,
-    #                    'Contact Email': contact_email,
-    #                    'Project Type': project_type}
-
-    # else:
-    #     form_option = 'Fixed'
-    #     fixed_app = crud.create_fixed_option(company_name, contact_email, coverage_requested)
-    #     new_app = crud.create_fixed_application(fixed_app)
-        
-    #     form_fields = {'Company Name': company_name,
-    #                    'Contact Email': contact_email,
-    #                    'Coverage Requested': coverage_requested}
+    new_app = crud.create_application(form_inputs)
 
     new_app_id = new_app.application_id
 
@@ -111,15 +98,20 @@ def validate_submission():
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font("Arial", size = 20)
-    pdf.cell(200, 10, txt=f'Shepherd {form_option} Application Form', ln = 0, align = 'C')
+    pdf.cell(200, 10, txt=f'Shepherd {option_type} Application Form', ln = 0, align = 'C')
     pdf.cell(200, 10, txt='', ln = 1, align = 'C')
     pdf.cell(200, 10, txt='', ln = 2, align = 'C')
     pdf.set_font("Arial", size = 15)
     line_no = 3
     
-    # prints out a new line for each field in form_fields
-    for key in form_fields.keys():
-        text = f'{key}: {form_fields[key]}'
+    # prints out a new line for each field in form_inputs
+
+    for app in applications.application_options:
+        if app['type'] == option_type:
+            fields = app['fields']
+
+    for field in fields:
+        text = f'{field["label"]}: {form_inputs[field["name"]]}'
         pdf.cell(200, 10, txt=text, ln = line_no, align = 'L')
         line_no += 1
         print(f'pdf txt is this: {text}')
