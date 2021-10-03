@@ -103,22 +103,37 @@ function Application() {
     return <div>fieldsState is null</div>
   } else {
 
+    
+    let form = fields.map((field, index) => {
+      if (field['form input'] === 'input') {
+        return (
+          
+          <div key={index} className='form-group text'> 
+            <label htmlFor={field.name} > {field.label} </label>
+            <input className='form-control' value={fieldsState[field.name]} type='text' onChange={handleChange} name={field.name} />
+          </div>
+        )
+      }
+      if (field['form input'] === 'select') {
+        return (
+          <div key={index} className='form-group text'> 
+            <label htmlFor={field.name} > {field.label} </label>
+            <select className='form-control text' value={fieldsState[field.name]} name={field.name} onChange={handleChange} autoComplete='off' required>
+              <option value='Residential'>Residential</option>
+              <option value='Commercial'>Commercial</option>
+              <option value='Public'>Public</option>
+            </select> 
+          </div>
+        )}
+        
+    });
+
     return (
       <div className='app-form'>
-        {/* {console.log(fields)}
-        {console.log(fieldsState)} */}
         <form action='/submission' method='POST'>
           <h3 className='text-header'>Application for {option_type} Option</h3>
-          {fields.map((field, index) => (
-            
-            <div key={index} className='form-group text'> 
-              
-              <label htmlFor={field.name} > {field.label} </label>
-
-              {console.log(fieldsState[field.name])}
-              <input className='form-control' value={fieldsState[field.name]} type='text' onChange={handleChange} name={field.name} />
-            </div>
-          ))}
+          
+          {form}
 
           <div className='submit-button'>
             <button className='btn btn-warning' type='submit' disabled={disableSubmit} onClick={handleSubmit}>Submit</button>
@@ -130,17 +145,6 @@ function Application() {
 
 }
 }
-
-            // <div className='form-group text'>
-            //   {console.log(field.name)}
-            //   <label htmlFor={fields.name} > {fields.label} </label>
-            // </div>
-            // if (field['form input'] === 'input') {
-            //   <input className='form-control' type='text' value={field.name} name={field.name}/>
-            // }
-
-
-
 
 
 
