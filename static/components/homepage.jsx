@@ -21,8 +21,8 @@ function Homepage() {
         <div className='app-options'>
           {buttons.map((button, index) => (
             <div id='option' key={index} className='text option-fixed'>
-            <Link className='btn btn-warning' to={'/application/' + button} type='submit' value='fixed' name='option' > {button} Application Option</Link>
-          </div>
+              <Link className='btn btn-warning' to={'/application/' + button} type='submit' value='fixed' name='option' > {button} Application Option</Link>
+            </div>
           ))}
         </div>
       </div>

@@ -17,11 +17,15 @@ app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
 
 @app.route('/form/<data>')
-@app.route('/application/fixed')
-@app.route('/application/flexible')
 @app.route('/application')
 @app.route('/')
 def homepage():
+    """View homepage."""
+
+    return render_template('root.html')
+
+@app.route('/application/<option_type>')
+def application_homepage(option_type):
     """View homepage."""
 
     return render_template('root.html')
@@ -42,12 +46,10 @@ def return_application_buttons():
 def application_type(option_type):
     """Returns the application form based on the option chosen."""
 
-    fields = None
-
     for application_option in applications.application_options:
         if application_option['type'] == option_type:
             fields = application_option['fields']
-    
+
     return jsonify(fields)
 
 @app.route('/submission', methods=['POST'])
