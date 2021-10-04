@@ -63,12 +63,10 @@ def validate_submission():
 
     print(form_inputs)
     option_type = form_inputs['option_type']
-    # company_name = request.json.get('companyName')
     contact_email = form_inputs['contact_email']
 
     if form_inputs.get('coverage_requested'):
         coverage_requested = form_inputs['coverage_requested']
-    # project_type = request.json.get('projectType')
     
     # from p3-validate-email package
     is_valid_email = validate_email(email_address=contact_email,
@@ -133,16 +131,6 @@ def valid_auth_cookie():
             invalid_cookie = False
 
     return jsonify(invalid_cookie)
-
-# TODO: complete show_pdf(data)
-# @app.route('/form/<data>', methods=['GET'])
-# def show_pdf(data):
-#     """Displays PDF in browser after successful submission"""
-
-#     url = f'/Users/kristalkung/vagrant/hb-dev/src/shepherd/takehome/{data}.pdf'
-#     webbrowser.open(url,new=new)
-
-
 
 if __name__ == '__main__':
     connect_to_db(app)
